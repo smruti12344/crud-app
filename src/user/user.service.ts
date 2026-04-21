@@ -31,4 +31,9 @@ export class UserService {
   async findByEmail(email: string) {
     return await this.UserModel.findOne({ email });
   }
+  // find user by id
+  //send to auth service to get user profile
+  async findById(id: string) {
+    return await this.UserModel.findById(id);
+  }
 }

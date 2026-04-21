@@ -53,4 +53,16 @@ export class AuthService {
       accessToken,
     };
   }
+  //get user profile
+  async getUserProfile(userId: string) {
+    console.log('Fetching user profile for userId:111111111111111111111', userId);
+    const user = await this.userService.findById(userId);
+    console.table(user);
+    if (!user) {
+      return { message: 'User not found' };
+    }
+    // Exclude the password from the returned user profile
+    const { password, ...userProfile } = user.toObject();
+    return userProfile;
+  }
 }
