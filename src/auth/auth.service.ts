@@ -24,6 +24,7 @@ export class AuthService {
     console.log('User created:', user);
     const payload = {
       sub: user._id,
+      role: user.role, // Include the user's role in the JWT payload
     };
 
     return {
@@ -46,6 +47,7 @@ export class AuthService {
     }
     const payload = {
       sub: user._id,
+      role: user.role, // Include the user's role in the JWT payload
     };
     const accessToken = await this.jwtService.signAsync(payload);
     return {
@@ -55,7 +57,7 @@ export class AuthService {
   }
   //get user profile
   async getUserProfile(userId: string) {
-    console.log('Fetching user profile for userId:111111111111111111111', userId);
+    console.log('Fetching user profile for userId:', userId);
     const user = await this.userService.findById(userId);
     console.table(user);
     if (!user) {
